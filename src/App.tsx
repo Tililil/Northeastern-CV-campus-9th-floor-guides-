@@ -32,12 +32,12 @@ function App() {
 
     // Validate inputs
     if (!start || !end) {
-      setError("请选择起点和终点");
+      setError("Please select start and end points");
       return;
     }
 
     if (start === end) {
-      setError("起点和终点不能相同");
+      setError("Start and end points cannot be the same");
       return;
     }
 
@@ -46,7 +46,7 @@ function App() {
     const endNode = nodes.find((node) => node.id === end);
 
     if (!startNode || !endNode) {
-      setError("指定的节点不存在");
+      setError("Specified nodes do not exist");
       return;
     }
 
@@ -54,7 +54,7 @@ function App() {
     const result = bellmanFord(nodes, edges, start, end);
 
     if (result.path.length === 0) {
-      setError("无法找到从起点到终点的路径");
+      setError("Cannot find a path from start to end point");
       return;
     }
 
@@ -107,7 +107,7 @@ function App() {
             border: "1px solid #ccc",
           }}
         >
-          <option value="">选择起点</option>
+          <option value="">Select Start Point</option>
           {nodeOptions.map((node) => (
             <option key={`start-${node.id}`} value={node.id}>
               {node.id} - {node.name}
@@ -124,7 +124,7 @@ function App() {
             border: "1px solid #ccc",
           }}
         >
-          <option value="">选择终点</option>
+          <option value="">Select End Point</option>
           {nodeOptions.map((node) => (
             <option key={`end-${node.id}`} value={node.id}>
               {node.id} - {node.name}
@@ -143,7 +143,7 @@ function App() {
             cursor: "pointer",
           }}
         >
-          寻找路径
+          Find Path
         </button>
       </div>
 
@@ -173,7 +173,7 @@ function App() {
             borderRadius: "4px",
           }}
         >
-          <h3>最短路径:</h3>
+          <h3>Shortest Path:</h3>
           <p>
             {path.map((nodeId, index) => (
               <span key={nodeId}>
@@ -184,7 +184,7 @@ function App() {
           </p>
           {distance !== null && (
             <p>
-              <strong>总距离:</strong> {distance} 单位
+              <strong>Total Distance:</strong> {distance} units
             </p>
           )}
         </div>
@@ -209,7 +209,10 @@ function App() {
           textAlign: "center",
         }}
       >
-        <p>图中标记: 起点(绿色), 终点(紫色), 路径节点(蓝色), 其他节点(红色)</p>
+        <p>
+          Legend: Start Point (Green), End Point (Purple), Path Nodes (Blue),
+          Other Nodes (Red)
+        </p>
       </div>
     </div>
   );
